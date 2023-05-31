@@ -11,9 +11,9 @@
 //document.querySelector('#som_tecla_pom').play();
 
 //criando uma função para tocar o som da tecla pom
-function tocaSom_pom () {
+/*function tocaSom_pom () {
     document.querySelector('#som_tecla_pom').play();
-}
+}*/
 
 /*
 //criando uma função para tocar o som da tecla clap
@@ -35,4 +35,42 @@ document.querySelector('.tecla_clap').onclick = tocaSom_clap;*/
 const listaDeTeclas = document.querySelectorAll('.tecla');
 
 //selecionando o primeiro elemento e atribuindo sua função
-listaDeTeclas[0].onclick = tocaSom_pom;
+//listaDeTeclas[0].onclick = tocaSom_pom;
+
+//alterando a função para ser genérica
+function tocaSom(idElementAudio){
+    document.querySelector(idElementAudio).play();
+}
+
+//criando o contador
+//let contador = 0;
+
+//acessando as classes dos elementos da lista
+//listaDeTeclas[0].classList; apresenta todas as classes desse elemento
+
+//acessando a classe necessária para associarmos o som ao elemento
+//listaDeTeclas[0].classList[1]; apresenta a classe tecla_pom
+
+//percorrendo a lista com while
+//while(contador < listaDeTeclas.length ){
+
+//percorrendo a lista com for para otimização
+for(let contador = 0; contador < listaDeTeclas.length; contador +=1){
+    const tecla = listaDeTeclas[contador];
+    //armazenando as classes em uma constante
+    const instrumento = tecla.classList[1];
+
+    //armazenando o id dos elementos de audio com as classes obtidas
+    //template string
+    const idAudio = `#som_${instrumento}`;
+
+    //console.log(idAudio);
+
+    tecla.onclick = function(){
+        tocaSom(idAudio);
+    }
+
+    //contador += 1;
+
+    //console.log(contador);
+}
